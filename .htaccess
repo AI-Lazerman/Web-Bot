@@ -1,0 +1,14 @@
+# Enable proper file types for Unity WebGL builds
+AddType application/wasm .wasm
+AddType application/octet-stream .data
+AddType application/octet-stream .mem
+AddType application/javascript .js
+
+# Enable gzip / brotli compression if supported
+AddEncoding gzip .gz
+AddEncoding br .br
+
+# Make sure caching doesn't cause issues during updates
+<FilesMatch "\.(data|wasm|js|html|gz|br)$">
+  Header set Cache-Control "public, max-age=0, must-revalidate"
+</FilesMatch>
